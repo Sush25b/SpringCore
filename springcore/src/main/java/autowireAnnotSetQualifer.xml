@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config />
+    
+    
+    <!--NOTE: here  BYname fails & BYtype fails...if both fails -->
+    <!-- /* by name it fails...
+    	NOTE:
+    		then if it goes for byType again it fails 
+    		as
+  					HERE their r 2 beans for HeartQ i.e id="humanHeart" & id="octopusHeart"
+  					
+    	 1)	So Spring get Confusion...which bean to use to create HeartQ Object
+    		   so we need to specify it by using @Qualifier annotation
+    		   
+    	 2)		like @Qualifier("humanHeart")
+                  so now the OBject for HEARTQ heart==> will be created of bean id ==>"humanheart" 
+                  
+         3)   i.e   Spring will create object of id="humanHeart" and inject that dependency called [ HEartQ heart ] 
+         				of the class 
+         			like   HEARTQ humanHeart =new heart(); 
+         			
+         4)   so now the object  {new heart() } will be pass to HeartQ heart ===>in HumanQ Class
+         			like   HEARTQ heart =new heart();     -->          
+         			 
+       
+      <!--  1st bean of HeartQ Class -->   
+      <bean id="humanHeart" class="com.spring.springcore.autowireAnnotSetQualifer.HeartQ">  
+   		<property name="nameOfAnimal"  value="Human" />
+   		<property name="noOfHeart"  value="1" />
+      </bean>
+   
+          <!--  2nd bean of HeartQ Class -->  
+	    <bean id="octpousHeart" class="com.spring.springcore.autowireAnnotSetQualifer.HeartQ">  
+	    	<property name="nameOfAnimal"  value="octopus" />
+	   		<property name="noOfHeart"  value="3" />
+	    </bean>
+	    
+   
+	<bean id="human" class="com.spring.springcore.autowireAnnotSetQualifer.HumanQ" >  
+    </bean>  
+    
+ </beans>
